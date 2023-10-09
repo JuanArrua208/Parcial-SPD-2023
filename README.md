@@ -12,8 +12,8 @@ Y en la segunda parte dependiendo de la temperatura detectada por el sensor, fun
 ## Funcion principal
 Realizamos un contador controlado por tres botones, el primero representado por un "reset" sirve para resetear el contador, el segundo representado por un "+" sirve para aumentar el contador y el tercero representado por un "-" sirve para disminuir el contador.
 
-En la segunda parte del proyecto modificamos el contador para que funciones con un boton deslizante que por un lado proyecta la temperatura del sensor de temperatura, siendo asi que cuando la temperatura se encuentra entre 0 y 99, el contador lo muestra, pero si el senso detecta una temperatura menos a 0 o mayor a 99, entonces el contador se queda en 00.
-Al mismo tiempo, tiene un motor que solo funciona si la temperatura se encuentra entre 0 y 99.
+En la segunda parte del proyecto modificamos el contador para que funciones con un boton deslizante que por un lado proyecta la temperatura del sensor de temperatura, siendo asi que cuando la temperatura se encuentra entre 0 y 99, el contador lo muestra, pero si el sensor detecta una temperatura a menos de 0 el contador se queda en 0 y si la temperatura es mas de 99 entonces el contador se queda en 99
+Al mismo tiempo, tiene un motor que solo funciona si la temperatura se encuentra entre 0 y 100.
 
 ## :robot: LINK A LA PRIMERA PARTE
  - [proyecto](https://www.tinkercad.com/things/lK53Jqx9DzV-parcial-primera-parte/editel?sharecode=2p-wACrsbx6XOd84fZugA19rhzR628BaFuwaa5GE93s)
