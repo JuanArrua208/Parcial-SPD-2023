@@ -15,14 +15,14 @@ Realizamos un contador controlado por tres botones, el primero representado por 
 En la segunda parte del proyecto modificamos el contador para que funciones con un boton deslizante que por un lado proyecta la temperatura del sensor de temperatura, siendo asi que cuando la temperatura se encuentra entre 0 y 99, el contador lo muestra, pero si el senso detecta una temperatura menos a 0 o mayor a 99, entonces el contador se queda en 00.
 Al mismo tiempo, tiene un motor que solo funciona si la temperatura se encuentra entre 0 y 99.
 
-## LINK A LA PRIMERA PARTE
- - [proyecto] (https://www.tinkercad.com/things/lK53Jqx9DzV-parcial-primera-parte/editel?sharecode=2p-wACrsbx6XOd84fZugA19rhzR628BaFuwaa5GE93s)
+## :robot: LINK A LA PRIMERA PARTE
+ - [proyecto](https://www.tinkercad.com/things/lK53Jqx9DzV-parcial-primera-parte/editel?sharecode=2p-wACrsbx6XOd84fZugA19rhzR628BaFuwaa5GE93s)
 
 ![Arduino_Parte_Uno](https://github.com/macachana/Parcial-SPD-2023/assets/123892029/6a004c37-8899-40cc-8de8-6ecd67b0b501)
 
 
-## LINK A LA SEGUNDA PARTE
- - [proyecto] (https://www.tinkercad.com/things/8eGbQiHqxrS-parcial-segunda-parte/editel?sharecode=vUwTpDuRsuGvyLwdAoSX3LTR16Y_a7iZby3rmRmdAQc)
+## :robot: LINK A LA SEGUNDA PARTE
+ - [proyecto](https://www.tinkercad.com/things/8eGbQiHqxrS-parcial-segunda-parte/editel?sharecode=vUwTpDuRsuGvyLwdAoSX3LTR16Y_a7iZby3rmRmdAQc)
 
 ![Arduino_Parte_Dos](https://github.com/macachana/Parcial-SPD-2023/assets/123892029/b5120c7f-712c-4b73-9fe2-40a47fcde43d)
 
