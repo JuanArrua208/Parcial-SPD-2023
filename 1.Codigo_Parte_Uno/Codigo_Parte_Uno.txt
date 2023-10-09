@@ -1,0 +1,232 @@
+// C++ code
+//
+#define A 12
+#define B 13
+#define C 7
+#define D 8
+#define E 9
+#define F 11
+#define G 10
+#define SUBE 5
+#define BAJA 4
+#define RESET 3
+#define UNIDAD A4
+#define DECENA A5
+#define APAGADOS 0
+#define TIMEDISPLAYON 20
+
+int countDigit = 0;
+int sube_numero = 1;
+int subePrevia = 1;
+int baja_numero = 1;
+int bajaPrevia = 1;
+int reset_numero = 1;
+int resetPrevia = 1;
+
+
+void setup()
+{
+  pinMode(3, INPUT_PULLUP);
+  pinMode(4, INPUT_PULLUP);
+  pinMode(5, INPUT_PULLUP);
+  pinMode(7, OUTPUT);
+  pinMode(8, OUTPUT);
+  pinMode(9, OUTPUT);
+  pinMode(10, OUTPUT);
+  pinMode(11, OUTPUT);
+  pinMode(12, OUTPUT);
+  pinMode(13, OUTPUT);
+  pinMode(UNIDAD, OUTPUT);
+  pinMode(DECENA, OUTPUT);
+  digitalWrite(UNIDAD,0);
+  digitalWrite(DECENA,0);
+  printDigit(0);
+}
+
+void loop()
+{
+  int pressed = keypressed();
+  if(pressed == SUBE)
+  {
+    countDigit++;
+    if(countDigit > 99)
+      countDigit=0;
+  }
+  else if(pressed == BAJA)
+  {
+    countDigit--;
+    if(countDigit<0)
+      countDigit =99;
+  }
+  else if(pressed == RESET)
+  {
+    countDigit = 0;
+  }
+  
+  printCount(countDigit);
+}
+
+void printDigit(int digit)
+{
+  digitalWrite(A,LOW);
+  digitalWrite(B,LOW);
+  digitalWrite(C,LOW);
+  digitalWrite(D,LOW);
+  digitalWrite(E,LOW);
+  digitalWrite(F,LOW);
+  digitalWrite(G,LOW);
+  switch(digit)
+  {
+    case 0:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH);
+      digitalWrite(E,HIGH);
+      digitalWrite(F,HIGH);
+      break;
+    }
+    case 1:
+    {
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      break;
+    }
+    case 2:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(E,HIGH);
+      digitalWrite(D,HIGH);
+      break;
+    }
+    case 3:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH);
+      break;
+    }
+    case 4:
+    {
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(G,HIGH);
+      digitalWrite(F,HIGH);
+      break;
+    }
+    case 5:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      break;
+    }
+    case 6:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH);
+      digitalWrite(E,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      break;
+    }
+    case 7:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      break;
+    }
+    case 8:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(D,HIGH);
+      digitalWrite(E,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      break;
+    }
+    case 9:
+    {
+      digitalWrite(A,HIGH);
+      digitalWrite(B,HIGH);
+      digitalWrite(C,HIGH);
+      digitalWrite(F,HIGH);
+      digitalWrite(G,HIGH);
+      break;
+    }
+  }
+  
+}
+
+void prendeDigito(int digito)
+{
+  if(digito == UNIDAD)
+  {
+    digitalWrite(UNIDAD,LOW); //pongo el comun de unidad en 0 (enciende)
+    digitalWrite(DECENA,HIGH); //pongo el comun de decena en 1 (apaga)
+    delay(TIMEDISPLAYON);
+  }
+  else if(digito == DECENA)
+  {
+    digitalWrite(UNIDAD,HIGH);
+    digitalWrite(DECENA,LOW);
+    delay(TIMEDISPLAYON);
+  }else
+  {
+    digitalWrite(UNIDAD,HIGH);
+    digitalWrite(DECENA,HIGH);
+  }
+}
+
+void printCount(int count)
+{
+  prendeDigito(APAGADOS);
+  printDigit(count/10); // cuenta que nos ayuda a separar la decena de la unidad
+  prendeDigito(DECENA);
+  prendeDigito(APAGADOS);
+  printDigit(count - 10*((int)count/10)); // cuenta que nos ayuda a separar a la unidad de la decena
+  prendeDigito(UNIDAD);
+}
+
+int keypressed(void)
+{
+  sube_numero = digitalRead(SUBE); //devuelve 0 si presiono, 1 si presiono
+  baja_numero = digitalRead(BAJA);
+  reset_numero = digitalRead(RESET);
+  
+  if (sube_numero) //no presione SUBE
+    subePrevia = 1; // entonces antes tampoco estaba presionada
+  if (baja_numero)
+    bajaPrevia = 1;
+  if(reset_numero)
+    resetPrevia = 1;
+  
+  	if (sube_numero == 0 && sube_numero != subePrevia)
+    {
+      subePrevia = sube_numero;
+      return SUBE;
+    }
+    if (baja_numero == 0 && baja_numero != bajaPrevia)
+    {
+      bajaPrevia = baja_numero;
+      return BAJA;
+    }
+  	if(reset_numero == 0 && reset_numero != resetPrevia)
+    {
+      resetPrevia = reset_numero;
+      return RESET;
+    }
+  return 0;
+    
+}
