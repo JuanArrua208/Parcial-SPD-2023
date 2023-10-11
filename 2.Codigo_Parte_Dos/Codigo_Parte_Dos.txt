@@ -20,11 +20,11 @@
 #define DETECCION_SENSOR A0
 
 //inicializo los contadores de decimal y unidad y el contador de temperatura
-int contador = 0;
+int contadorTemperatura = 0;
 int decimal = 0;
 int unidad = 0;
 
-int contadorTemperatura = -40;
+//declaro las variables de lectura de temperatura y la de temperatura
 int lectura;
 int temperatura;
 
@@ -55,22 +55,22 @@ void loop()
 {
   // lee y traduce la temperatura del sensor
   // se le agrega el valor de temperatura al contador
-  digitalWrite(A1, HIGH);
+  digitalWrite(ENERGIA_SENSOR, HIGH);
   lectura = analogRead(DETECCION_SENSOR);
   temperatura = map(lectura, 20, 358, -40, 125);
-  contador = temperatura;
+  contadorTemperatura = temperatura;
   
   // estas condiciones se encargan de que el contador solo
   // llegue hasta 99 como máximo y 0 como mínimo
-  if (contador > 99)
+  if (contadorTemperatura > 99)
   {
-    contador = 99;
+    contadorTemperatura = 99;
   }
   else
   {
-    if (contador < 0)
+    if (contadorTemperatura < 0)
     {
-      contador = 0;
+      contadorTemperatura = 0;
     }
   }
     
@@ -78,11 +78,11 @@ void loop()
   // los numeros
   if (digitalRead(INTERRUPTOR) == LOW)
   {
-    mostrarNumero(contador);
+    mostrarNumero(contadorTemperatura);
   }
   else
   {
-    mostrarPrimos(contador);
+    mostrarPrimos(contadorTemperatura);
   }
   
   // muestra la temperatura en el monitor serial
@@ -94,7 +94,7 @@ void loop()
   segun la temperatura que tenga
   si su temperatura es muy alta se sobrecalienta
   y se apaga, de lo contrario si es muy fria
-  está demasiado bajo para que el motro funcione.
+  está demasiado bajo para que el motor funcione.
   Pero si la temperatura está entre 0 y 100 grados inclusive,
   el motor se prende.
   */
@@ -117,7 +117,8 @@ void loop()
 }
 
 /*
-recive el valor del contador, separa el decimal y la unidad 
+recive el valor del contador de temperatura, 
+separa el decimal y la unidad 
 en distintas variables, para luego poder mostrarlas
 en los visualizadores con la funcion numero,
 itera la funcion varias veces asi se da la multiplexación 
@@ -162,7 +163,7 @@ void mostrarPrimos(int contador)
   }
 }
 
-// prende el visualizador de los decimales 
+// prende el visualizador de los decimales y unidades
 // con el numero que corresponda
 void numero(int decimal, int unidad)
 {
@@ -277,7 +278,7 @@ void visualizadorL()
   digitalWrite(A4, HIGH);
 }
 
-// prende y apaga el visualizador Rigth(izquierda), de ahí la R
+// prende y apaga el visualizador Rigth(derecha), de ahí la R
 void visualizadorR()
 {
   digitalWrite(A5, HIGH);
